@@ -69,9 +69,6 @@ lib_fixups: lib_fixups_user_type = {
 def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
     return f'{lib}-{partition}' if partition == 'vendor' else None
 
-def lib_fixup_odm_suffix(lib: str, partition: str, *args, **kwargs):
-    return f'{lib}-{partition}' if partition == 'odm' else None
-
 lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
     ('vendor.xiaomi.hw.touchfeature-V1-ndk'): lib_fixup_vendor_suffix,
@@ -85,7 +82,6 @@ lib_fixups: lib_fixups_user_type = {
         'vendor.mediatek.hardware.apuware.utils@2.0',
         'vendor.mediatek.hardware.videotelephony@1.0',
     ): lib_fixup_vendor_suffix,
-    ('odm/lib64/libMiVideoFilter.so'): lib_fixup_odm_suffix,
 }
 
 blob_fixups: blob_fixups_user_type = {
@@ -170,7 +166,7 @@ blob_fixups: blob_fixups_user_type = {
      'vendor/lib64/libmcve.so',
      'odm/lib64/libMiEmojiEffect.so',
      'vendor/lib64/mt6899/libneuron_adapter_mgvi.so',
-     'odm/lib64/libMiVideoFilter.so'): blob_fixup()
+     'odm/lib64/libMiPhotoFilter.so'): blob_fixup()
         .clear_symbol_version('AHardwareBuffer_allocate')
         .clear_symbol_version('AHardwareBuffer_createFromHandle')
         .clear_symbol_version('AHardwareBuffer_describe')

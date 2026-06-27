@@ -5,4 +5,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/halcyon_rodin.mk
+    $(LOCAL_DIR)/lineage_rodin.mk

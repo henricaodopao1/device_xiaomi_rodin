@@ -211,6 +211,8 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/bin/hw/android.hardware.audio.service-aidl.mediatek': blob_fixup()
         .replace_needed('android.media.audio.common.types-V5-ndk.so', 'android.media.audio.common.types-V3-ndk.so')
         .replace_needed('libaudio_aidl_conversion_common_ndk.so', 'libaudio_aidl_conversion_common_ndk_prebuilt.so'),
+    'system_ext/bin/hw/android.hardware.audio.parameter_parser.service': blob_fixup()
+        .replace_needed('av-audio-types-aidl-ndk.so', 'av-audio-types-aidl-ndk-prebuilt.so'),
     'vendor/lib64/hw/android.hardware.audio.effect.aidl-impl-mediatek.so': blob_fixup()
         .replace_needed('android.media.audio.common.types-V5-ndk.so', 'android.media.audio.common.types-V3-ndk.so')
         .replace_needed('libtinyxml2.so', 'libtinyxml2-v34.so'),

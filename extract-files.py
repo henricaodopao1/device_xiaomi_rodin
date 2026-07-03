@@ -69,18 +69,18 @@ lib_fixups: lib_fixups_user_type = {
 def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
     return f'{lib}-{partition}' if partition == 'vendor' else None
 
+def lib_fixup_odm_suffix(lib: str, partition: str, *args, **kwargs):
+    return f'{lib}-{partition}' if partition == 'odm' else None
+
 lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
-    ('vendor.xiaomi.hw.touchfeature-V1-ndk'): lib_fixup_vendor_suffix,
-    ('vendor.xiaomi.hardware.fingerprintextension-V1-ndk'): lib_fixup_vendor_suffix,
     (
+        'vendor.mediatek.hardware.apuware.apusys-V5-ndk',
+        'vendor.mediatek.hardware.apuware.utils-V1-ndk',
+        'vendor.mediatek.hardware.apuware.utils@2.0',
+        'vendor.mediatek.hardware.videotelephony-V1-ndk',
         'libneuron_graph_delegate.mtk',
         'libtflite_mtk',
-        'vendor.mediatek.hardware.apuware.apusys@2.0',
-        'vendor.mediatek.hardware.apuware.apusys@2.1',
-        'vendor.mediatek.hardware.apuware.hmp@1.0',
-        'vendor.mediatek.hardware.apuware.utils@2.0',
-        'vendor.mediatek.hardware.videotelephony@1.0',
     ): lib_fixup_vendor_suffix,
 }
 
@@ -166,7 +166,7 @@ blob_fixups: blob_fixups_user_type = {
      'vendor/lib64/libmcve.so',
      'odm/lib64/libMiEmojiEffect.so',
      'vendor/lib64/mt6899/libneuron_adapter_mgvi.so',
-     'odm/lib64/libMiPhotoFilter.so'): blob_fixup()
+     'system_ext/lib64/libMiVideoFilter.so'): blob_fixup()
         .clear_symbol_version('AHardwareBuffer_allocate')
         .clear_symbol_version('AHardwareBuffer_createFromHandle')
         .clear_symbol_version('AHardwareBuffer_describe')
@@ -211,8 +211,6 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/bin/hw/android.hardware.audio.service-aidl.mediatek': blob_fixup()
         .replace_needed('android.media.audio.common.types-V5-ndk.so', 'android.media.audio.common.types-V3-ndk.so')
         .replace_needed('libaudio_aidl_conversion_common_ndk.so', 'libaudio_aidl_conversion_common_ndk_prebuilt.so'),
-    'system_ext/bin/hw/android.hardware.audio.parameter_parser.service': blob_fixup()
-        .replace_needed('av-audio-types-aidl-ndk.so', 'av-audio-types-aidl-ndk-prebuilt.so'),
     'vendor/lib64/hw/android.hardware.audio.effect.aidl-impl-mediatek.so': blob_fixup()
         .replace_needed('android.media.audio.common.types-V5-ndk.so', 'android.media.audio.common.types-V3-ndk.so')
         .replace_needed('libtinyxml2.so', 'libtinyxml2-v34.so'),
@@ -251,7 +249,7 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('libbinder_shim.so')
         .add_needed('libprocessgroup_shim.so')
         .call(blob_fixup_graphic_buffer_size),
-    'vendor/lib64/libMiPhotoFilter.so': blob_fixup()
+    'odm/lib64/libMiPhotoFilter.so': blob_fixup()
         .clear_symbol_version('AHardwareBuffer_allocate')
         .clear_symbol_version('AHardwareBuffer_createFromHandle')
         .clear_symbol_version('AHardwareBuffer_describe')
@@ -262,6 +260,8 @@ blob_fixups: blob_fixups_user_type = {
         .clear_symbol_version('AHardwareBuffer_release')
         .clear_symbol_version('AHardwareBuffer_unlock')
         .add_needed('libbinder_shim.so'),
+    'system_ext/bin/hw/android.hardware.audio.parameter_parser.service': blob_fixup()
+        .replace_needed('av-audio-types-aidl-ndk.so', 'av-audio-types-aidl-V3-ndk.so'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(

@@ -199,6 +199,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Fastboot
+$(call soong_config_set_bool,fastbootd,bypass_lock_state,true)
 PRODUCT_PACKAGES += \
     fastbootd
 

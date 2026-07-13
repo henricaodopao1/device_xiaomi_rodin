@@ -238,6 +238,17 @@ ro.vendor.md_auto_setup_ims=1
 ro.vendor.mtk_data_config=1
 ro.vendor.vt_hevc_support=1
 
+# LMK
+# Stock HyperOS pairs aggressive thrashing/PSI with MIMD and disables pure
+# low-mem cached kills. Without MIMD, AOSP defaults + elevated watermarks
+# kill cached apps almost immediately when free RAM dips below high watermark.
+# Keep thrashing/PSI at AOSP high-end defaults; only adopt the stock knobs
+# that improve retention and reclaim accounting.
+ro.lmk.lowmem_min_oom_score=1001
+ro.lmk.swap_compression_ratio=3
+ro.lmk.kill_heaviest_task=true
+ro.lmk.kill_timeout_ms=100
+
 # NeuralNetworks
 debug.mtk_tflite.target_nnapi=29
 ro.vendor.mtk_nn_baseline_support=1

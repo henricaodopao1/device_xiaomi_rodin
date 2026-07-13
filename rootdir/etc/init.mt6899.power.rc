@@ -147,8 +147,11 @@ on property:sys.boot_completed=1
     chmod 0664 /sys/devices/platform/pd-adapter/Charging_Adapter/pd_adapter/verify_process
     start batterysecret
 
-    # Adjust watermark level
-    write /proc/sys/vm/watermark_scale_factor 200
+    # Watermark scale (default is 10). 200 was kanged from Pixel for burst
+    # allocations but pairs badly with AOSP lmkd: free RAM stays "below high
+    # watermark" most of the time and cached apps get reaped constantly.
+    # 40 keeps reclaim a bit proactive without false low-memory pressure.
+    write /proc/sys/vm/watermark_scale_factor 40
 
     # End boot time tuning
     write /sys/devices/system/cpu/cpufreq/policy0/scaling_governor "schedutil"

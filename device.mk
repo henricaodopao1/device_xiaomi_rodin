@@ -190,14 +190,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.context_hub.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.context_hub.xml
 
-# Dalvik
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapstartsize=24m \
-    dalvik.vm.heapgrowthlimit=256m \
-    dalvik.vm.heapsize=512m \
-    dalvik.vm.heaptargetutilization=0.46 \
-    dalvik.vm.heapminfree=8m \
-    dalvik.vm.heapmaxfree=48m
+# Init (runtime dalvik heap based on total RAM: 8GB / 12GB SKUs)
+$(call soong_config_set,libinit,vendor_init_lib,//device/xiaomi/rodin/libinit:init_rodin)
 
 # DRM (Clearkey)
 PRODUCT_PACKAGES += \

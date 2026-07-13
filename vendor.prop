@@ -318,9 +318,6 @@ vendor.video.framework.thumbnail.SurfaceMode=1
 
 # Radio
 persist.radio.multisim.config=dsds
-persist.vendor.mtk_rtt_support=1
-persist.vendor.mtk.vodata.allow_rat=0
-persist.vendor.mtk.vodata.data_mode=1
 persist.vendor.md_c2k_cap_dep_check=0
 persist.vendor.mims_support=2
 persist.vendor.mtk_dc_call_capability=0
@@ -359,11 +356,9 @@ ro.vendor.mtk_ril_mode=c6m_1rild
 ro.vendor.mtk_rild_read_imsi=1
 ro.vendor.mtk_sim_card_onoff=3
 ro.vendor.mtk_sim_hot_swap_common_slot=1
-ro.vendor.mtk_wappush_support=1
 ro.vendor.mtk_world_phone_policy=0
 ro.vendor.num_md_protocol=2
 ro.vendor.radio.max.multisim=dsds
-ro.vendor.ril.set_sbp_place=0
 ro.vendor.sim_me_lock_mode=3
 telephony.active_modems.max_count=2
 telephony.lteOnCdmaDevice=1

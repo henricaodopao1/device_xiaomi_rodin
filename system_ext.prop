@@ -5,8 +5,3 @@ ro.audio.ihaladaptervendorextension_enabled=true
 ro.audio.usb.period_us=16000
 ro.camera.sound.forced=0
 
-# Radio
-ro.radio.device_type=1
-ro.vendor.imeisv=20
-vendor.rild.libargs=-d /dev/ttyC0
-vendor.rild.libpath=mtk-ril.so
